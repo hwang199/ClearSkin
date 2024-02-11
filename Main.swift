@@ -1,4 +1,0 @@
-hey
-out.print
-aa
-
