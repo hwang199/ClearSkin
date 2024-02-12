@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  LoginScreen
 //
-//  Created by Federico on 13/11/2021.
+//  Created by Appathon Proposal 1 on 13/11/2021.
 //
 
 import SwiftUI
