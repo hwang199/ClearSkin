@@ -48,7 +48,7 @@ struct ContentView: View {
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(20)
                         .border(.red, width: CGFloat(wrongUsername))
-                        .position(x:195,y:230)
+                        .position(x:195,y:235)
                     
                     Text("Password")
                         .padding()
@@ -62,13 +62,13 @@ struct ContentView: View {
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(20)
                         .border(.red, width: CGFloat(wrongPassword))
-                        .position(x:195,y:110)
+                        .position(x:195,y:115)
                     
                     Text("Forgot Password?")
                         .padding()
                         .foregroundColor(Color("lightblue"))
                         .font(.system(size: 12))
-                        .position(x:285,y:50)
+                        .position(x:285,y:60)
 
                     Button("Sign In") {
                         authenticateUser(username: username, password: password)
@@ -79,11 +79,57 @@ struct ContentView: View {
                     .cornerRadius(30)
                     .position(x:195,y:5)
                     
+                    /*
                     Text("OR LOG IN WITH")
                         .padding()
                         .foregroundColor(Color.black)
                         .font(.system(size: 12))
                         .position(x:195,y:0)
+                    
+                     Button("Google") {
+                        
+                     .foregroundColor(.red)
+                     .frame(width: 100, height: 100)
+                     .background(Color.white)
+                     .cornerRadius(90)
+                     .padding()
+                     .position(x:195,y:20)
+                     
+                     Button("Facebook") {
+                         authenticateUser(username: username, password: password)
+                         }
+                     .foregroundColor(.blue)
+                     .frame(width: 100, height: 100)
+                     .background(Color.white)
+                     .cornerRadius(90)
+                     .padding()
+                     .position(x:200,y:20)
+                    
+                    Button("Apple") {
+                        authenticateUser(username: username, password: password)
+                        }
+                    .foregroundColor(.black)
+                    .frame(width: 100, height: 100)
+                    .background(Color.white)
+                    .cornerRadius(90)
+                    .padding()
+                    .position(x:200,y:20)
+                     */
+                    
+                    Text("Don't have an account?")
+                        .padding()
+                        .foregroundColor(Color.black)
+                        .font(.system(size: 12))
+
+                    Button("Sign Up"){
+                        authenticateUser(username: username, password: password)
+                        }
+                        .padding()
+                        .foregroundColor(Color("lightblue"))
+                        .font(.system(size: 12))
+
+                        .position(x:195,y:5)
+                    
                     
                     NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
                         EmptyView()
@@ -109,6 +155,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
