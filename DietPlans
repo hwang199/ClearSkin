@@ -29,16 +29,22 @@ struct DietPlans: View {
                     UITableView.appearance().allowsMultipleSelection = true
                 }
 
+                Spacer()
+
                 Button(action: {
                     isAddMealsButtonVisible.toggle()
                 }) {
-                    Text("Add Meals")
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding()
+                    HStack {
+                        Image(systemName: "food")
+                            .foregroundColor(.white)
+                        Text("Add Meals")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue.opacity(0.7))
+                    .cornerRadius(10)
+                    .padding()
                 }
                 .disabled(!isAddMealsButtonVisible)
                 .opacity(isAddMealsButtonVisible ? 1 : 0)
@@ -48,8 +54,9 @@ struct DietPlans: View {
     }
 }
 
-struct DietPlans_Preview: PreviewProvider {
+struct DietPlans_Previews: PreviewProvider {
     static var previews: some View {
         DietPlans()
     }
 }
+
