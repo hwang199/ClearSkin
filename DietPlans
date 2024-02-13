@@ -1,1 +1,55 @@
-hi
+//
+//  DietPlans.swift
+//  ClearSkin
+//
+//  Created by Varsha Venkateshwaran on 2/13/24.
+//
+
+import Foundation
+import SwiftUI
+
+struct DietPlans: View {
+    let dietOptions = ["Pescetarian", "Nut Free", "Vegan", "Paleo", "Vegetarian", "Diabetic", "Lactose-Free", "Gluten-Free", "Low/No Sodium", "High Protein", "Low Carb", "Other"]
+    @State private var selectedDiet: Set<String> = []
+    @State private var isOtherSelected = false
+    @State private var isAddMealsButtonVisible = false
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("Select a diet:")
+                    .font(.headline)
+                    .padding()
+
+                List(dietOptions, id: \.self, selection: $selectedDiet) { diet in
+                    Text(diet)
+                }
+                .listStyle(GroupedListStyle())
+                .onAppear {
+                    UITableView.appearance().allowsMultipleSelection = true
+                }
+
+                Button(action: {
+                    isAddMealsButtonVisible.toggle()
+                }) {
+                    Text("Add Meals")
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding()
+                }
+                .disabled(!isAddMealsButtonVisible)
+                .opacity(isAddMealsButtonVisible ? 1 : 0)
+            }
+            .navigationTitle("Diet Selection")
+        }
+    }
+}
+
+struct DietPlans_Preview: PreviewProvider {
+    static var previews: some View {
+        DietPlans()
+    }
+}
