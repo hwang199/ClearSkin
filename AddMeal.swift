@@ -1,15 +1,14 @@
 import SwiftUI
 
-@main
 struct DietTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AddMeal()
         }
     }
 }
 
-struct ContentView: View {
+struct AddMeal: View {
     @State private var caloriesConsumed = 0
     @State private var fatConsumed = 0
     @State private var proteinConsumed = 0
@@ -151,10 +150,9 @@ struct AddMealDetailView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct AddMeal_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AddMeal()
     }
 }
-
 
