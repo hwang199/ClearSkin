@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftUICalendar
 
-struct SelectionView: View {
+struct Calendar: View {
     @ObservedObject var controller: CalendarController = CalendarController()
     @State var focusDate: YearMonthDay? = YearMonthDay.current
     
@@ -38,11 +38,11 @@ struct SelectionView: View {
                 })
             }
         }
-        .navigationBarTitle("Selection")
+        .navigationBarTitle("Progress Calendar")
     }
 }
 
-struct SelectionView_Previews: PreviewProvider {
+struct Calendar_Previews: PreviewProvider {
     static var previews: some View {
         SelectionView()
     }
