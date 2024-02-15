@@ -167,3 +167,9 @@ struct RootView: View {
         }
     }
 }
+
+struct Calendar_Previews: PreviewProvider {
+    static var previews: some View {
+        Calendar()
+    }
+}
