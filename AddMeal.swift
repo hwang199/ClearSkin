@@ -1,119 +1,11 @@
 import SwiftUI
 
-struct DietTrackerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            AddMeal()
-        }
-    }
-}
-
-struct AddMeal: View {
-    @State private var caloriesConsumed = 0
-    @State private var fatConsumed = 0
-    @State private var proteinConsumed = 0
-    @State private var carbsConsumed = 0
-    @State private var meals: [String] = []
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Diet Tracker")
-                    .font(.largeTitle)
-                    .padding()
-
-                NavigationLink(destination: AddMealView(addMeal: addMeal)) {
-                    VStack {
-                        Text("Calories Consumed:")
-                            .font(.headline)
-                        Text("\(caloriesConsumed)")
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-
-                HStack {
-                    VStack {
-                        Text("Fat Consumed:")
-                            .font(.headline)
-                        Text("\(fatConsumed) g")
-                    }
-                    .padding()
-
-                    VStack {
-                        Text("Protein Consumed:")
-                            .font(.headline)
-                        Text("\(proteinConsumed) g")
-                    }
-                    .padding()
-
-                    VStack {
-                        Text("Carbs Consumed:")
-                            .font(.headline)
-                        Text("\(carbsConsumed) g")
-                    }
-                    .padding()
-                }
-
-                Spacer()
-            }
-            .navigationTitle("Diet Tracker")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .onAppear {
-            addMeal()
-        }
-    }
-
-    func addMeal() {
-        // Simulating adding a meal
-        let mealCalories = Int.random(in: 100...500)
-        let mealFat = Int.random(in: 5...30)
-        let mealProtein = Int.random(in: 5...30)
-        let mealCarbs = Int.random(in: 5...50)
-
-        caloriesConsumed += mealCalories
-        fatConsumed += mealFat
-        proteinConsumed += mealProtein
-        carbsConsumed += mealCarbs
-
-        meals.append("Meal \(meals.count + 1)")
-    }
-}
-
-struct AddMealView: View {
-    var addMeal: () -> Void
-
-    var body: some View {
-        NavigationLink(destination: AddMealDetailView()) {
-            VStack {
-                Text("Add Meal")
-                    .font(.largeTitle)
-                    .padding()
-
-                Text("Add Meal")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
-
-                Spacer()
-            }
-        }
-    }
-}
-
 struct AddMealDetailView: View {
     @State private var mealName = ""
     @State private var fatAmount = ""
     @State private var proteinAmount = ""
     @State private var carbsAmount = ""
+    @State private var searchText = ""
 
     var body: some View {
         VStack {
@@ -121,18 +13,46 @@ struct AddMealDetailView: View {
                 .font(.largeTitle)
                 .padding()
 
+            // Search Bar
+            TextField("Search", text: $searchText)
+                .padding()
+
+            Spacer()
+
+            // Meal Name TextField
             TextField("Meal Name", text: $mealName)
                 .padding()
 
-            TextField("Fat (g)", text: $fatAmount)
-                .padding()
+            // Fat Amount TextField with Circle
+            HStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.5))
+                    .frame(width: 10, height: 10)
+                TextField("Fat (g)", text: $fatAmount)
+            }
+            .padding()
 
-            TextField("Protein (g)", text: $proteinAmount)
-                .padding()
+            // Protein Amount TextField with Circle
+            HStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.5))
+                    .frame(width: 10, height: 10)
+                TextField("Protein (g)", text: $proteinAmount)
+            }
+            .padding()
 
-            TextField("Carbs (g)", text: $carbsAmount)
-                .padding()
+            // Carbs Amount TextField with Circle
+            HStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.5))
+                    .frame(width: 10, height: 10)
+                TextField("Carbs (g)", text: $carbsAmount)
+            }
+            .padding()
 
+            Spacer()
+
+            // Add Button
             Button(action: {
                 // Perform the action to add the meal with the provided details
             }) {
@@ -143,6 +63,7 @@ struct AddMealDetailView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
             }
+            .padding()
 
             Spacer()
         }
@@ -150,9 +71,11 @@ struct AddMealDetailView: View {
     }
 }
 
-struct AddMeal_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMeal()
+        AddMealDetailView()
     }
 }
+
+
 
