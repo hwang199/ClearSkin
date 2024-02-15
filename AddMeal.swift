@@ -1,81 +1,56 @@
 import SwiftUI
+import Foundation
 
-struct AddMealDetailView: View {
-    @State private var mealName = ""
-    @State private var fatAmount = ""
-    @State private var proteinAmount = ""
-    @State private var carbsAmount = ""
-    @State private var searchText = ""
+struct DietPlans: View {
+    let dietOptions = ["Pescetarian", "Nut Free", "Vegan", "Paleo", "Vegetarian", "Diabetic", "Lactose-Free", "Gluten-Free", "Low/No Sodium", "High Protein", "Low Carb", "Other"]
+    @State private var selectedDiet: Set<String> = []
+    @State private var isOtherSelected = false
+    @State private var isAddMealsButtonVisible = true // Change here
 
     var body: some View {
-        VStack {
-            Text("Add Meal")
-                .font(.largeTitle)
-                .padding()
-
-            // Search Bar
-            TextField("Search", text: $searchText)
-                .padding()
-
-            Spacer()
-
-            // Meal Name TextField
-            TextField("Meal Name", text: $mealName)
-                .padding()
-
-            // Fat Amount TextField with Circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
-                TextField("Fat (g)", text: $fatAmount)
-            }
-            .padding()
-
-            // Protein Amount TextField with Circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
-                TextField("Protein (g)", text: $proteinAmount)
-            }
-            .padding()
-
-            // Carbs Amount TextField with Circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
-                TextField("Carbs (g)", text: $carbsAmount)
-            }
-            .padding()
-
-            Spacer()
-
-            // Add Button
-            Button(action: {
-                // Perform the action to add the meal with the provided details
-            }) {
-                Text("Add")
+        NavigationView {
+            VStack {
+                Text("Select a diet:")
                     .font(.headline)
-                    .foregroundColor(.white)
                     .padding()
-                    .background(Color.blue)
+
+                List(dietOptions, id: \.self, selection: $selectedDiet) { diet in
+                    Text(diet)
+                }
+                .listStyle(GroupedListStyle())
+                .onAppear {
+                    UITableView.appearance().allowsMultipleSelection = true
+                }
+
+                Button(action: {
+                    // Handle button action
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "food")
+                            .foregroundColor(.white)
+                        Text("Add Meals")
+                            .foregroundColor(.white)
+                            .padding()
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue.opacity(0.7))
                     .cornerRadius(10)
+                    .padding()
+                }
+                .disabled(!isAddMealsButtonVisible)
+                .opacity(isAddMealsButtonVisible ? 1 : 0)
+
+                Spacer()
             }
-            .padding()
-
-            Spacer()
+            .navigationTitle("Diet Selection")
         }
-        .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMealDetailView()
+struct DietPlans_Previews : PreviewProvider {
+    static var previews : some View {
+        DietPlans()
     }
 }
-
-
-
