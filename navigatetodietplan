@@ -1,0 +1,51 @@
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Create a UIButton
+        let dietPlanButton = UIButton(type: .system)
+        dietPlanButton.setTitle("Diet Plan", for: .normal)
+        dietPlanButton.addTarget(self, action: #selector(dietPlanButtonTapped), for: .touchUpInside)
+
+        // Add the button to the view
+        view.addSubview(dietPlanButton)
+
+        // Set constraints (you may need to adjust these based on your layout)
+        dietPlanButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dietPlanButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dietPlanButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    @objc func dietPlanButtonTapped() {
+        // Handle button tap, navigate to another page (view controller)
+        let dietPlanViewController = DietPlanViewController()
+        navigationController?.pushViewController(dietPlanViewController, animated: true)
+    }
+}
+
+class DietPlanViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Customize the UI of the DietPlanViewController as needed
+        view.backgroundColor = UIColor.white
+
+        let titleLabel = UILabel()
+        titleLabel.text = "This is the Diet Plan Page"
+        titleLabel.font = UIFont.systemFont(ofSize: 24)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+}
