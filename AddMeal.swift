@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 struct AddMeals: View {
@@ -20,49 +19,50 @@ struct AddMeals: View {
 
             Spacer()
 
-            // Meal Name TextField
+            // Meal Name text
             TextField("Meal Name", text: $mealName)
                 .padding()
 
-            // Fat Amount TextField with Circle
+            // Fat Amount circle
             HStack {
                 Circle()
                     .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
+                    .frame(width: 15, height: 15) // Slightly larger size
                 TextField("Fat (g)", text: $fatAmount)
             }
-            .padding()
+            .padding([.leading, .trailing, .bottom]) // Additional padding
 
-            // Protein Amount TextField with Circle
+            // Protein Amount Text & Circle
             HStack {
                 Circle()
                     .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
+                    .frame(width: 15, height: 15) // Slightly larger size
                 TextField("Protein (g)", text: $proteinAmount)
             }
-            .padding()
+            .padding([.leading, .trailing, .bottom]) // Additional padding
 
             // Carbs Amount TextField with Circle
             HStack {
                 Circle()
                     .fill(Color.blue.opacity(0.5))
-                    .frame(width: 10, height: 10)
+                    .frame(width: 15, height: 15) // Slightly larger size
                 TextField("Carbs (g)", text: $carbsAmount)
             }
-            .padding()
+            .padding([.leading, .trailing, .bottom]) // Additional padding
 
             Spacer()
 
-            // Add Button
+            // Add Button 
             Button(action: {
-                // Perform the action to add the meal with the provided details
+                // Perform the action to add the meal 
             }) {
                 Text("Add")
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding()
+                    .padding(.horizontal, 30) // Longer width
+                    .padding(.vertical, 15) // Adjusted height
                     .background(Color.blue)
-                    .cornerRadius(10)
+                    .clipShape(Capsule()) // Capsule shape for cylindrical effect
             }
             .padding()
 
@@ -77,4 +77,5 @@ struct AddMeals_Previews: PreviewProvider {
         AddMeals()
     }
 }
+
 
