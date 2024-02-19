@@ -5,6 +5,7 @@ struct AddMeals: View {
     @State private var fatAmount = ""
     @State private var proteinAmount = ""
     @State private var carbsAmount = ""
+    @State private var caloriesAmount = "" // New state variable for calories
     @State private var searchText = ""
 
     var body: some View {
@@ -24,45 +25,30 @@ struct AddMeals: View {
                 .padding()
 
             // Fat Amount circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 15, height: 15) // Slightly larger size
-                TextField("Fat (g)", text: $fatAmount)
-            }
-            .padding([.leading, .trailing, .bottom]) // Additional padding
+            NutrientInputView(nutrientName: "Fat", nutrientAmount: $fatAmount)
 
-            // Protein Amount Text & Circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 15, height: 15) // Slightly larger size
-                TextField("Protein (g)", text: $proteinAmount)
-            }
-            .padding([.leading, .trailing, .bottom]) // Additional padding
+            // Protein Amount circle
+            NutrientInputView(nutrientName: "Protein", nutrientAmount: $proteinAmount)
 
-            // Carbs Amount TextField with Circle
-            HStack {
-                Circle()
-                    .fill(Color.blue.opacity(0.5))
-                    .frame(width: 15, height: 15) // Slightly larger size
-                TextField("Carbs (g)", text: $carbsAmount)
-            }
-            .padding([.leading, .trailing, .bottom]) // Additional padding
+            // Carbs Amount circle
+            NutrientInputView(nutrientName: "Carbs", nutrientAmount: $carbsAmount)
+
+            // Calories Amount circle
+            NutrientInputView(nutrientName: "Calories", nutrientAmount: $caloriesAmount)
 
             Spacer()
 
-            // Add Button 
+            // Add Button
             Button(action: {
-                // Perform the action to add the meal 
+                // Perform the action to add the meal
             }) {
                 Text("Add")
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding(.horizontal, 30) // Longer width
-                    .padding(.vertical, 15) // Adjusted height
+                    .padding(.horizontal, 20) // Adjusted width
+                    .padding(.vertical, 10) // Adjusted height
                     .background(Color.blue)
-                    .clipShape(Capsule()) // Capsule shape for cylindrical effect
+                    .cornerRadius(10)
             }
             .padding()
 
@@ -72,10 +58,24 @@ struct AddMeals: View {
     }
 }
 
+struct NutrientInputView: View {
+    let nutrientName: String
+    @Binding var nutrientAmount: String
+
+    var body: some View {
+        HStack {
+            Circle()
+                .fill(Color.blue.opacity(0.5))
+                .frame(width: 15, height: 15) // Slightly larger size
+            TextField("\(nutrientName) (g)", text: $nutrientAmount)
+        }
+        .padding([.leading, .trailing, .bottom]) // Additional padding
+    }
+}
+
 struct AddMeals_Previews: PreviewProvider {
     static var previews: some View {
         AddMeals()
     }
 }
-
 
